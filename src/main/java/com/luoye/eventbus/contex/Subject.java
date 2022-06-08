@@ -2,9 +2,9 @@ package com.luoye.eventbus.contex;
 
 import com.luoye.eventbus.bus.Event;
 
-public interface Subject<T extends Event> {
+public interface Subject {
     String getSubjectId();
-    void add(Observer<T> observer);
-    void remove(Observer<T> observer);
-    void notifyObserver(T event);
+    void add(Observer observer);
+    void remove(Observer observer);
+    void notifyObserver(Event event);
 }

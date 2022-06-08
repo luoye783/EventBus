@@ -5,13 +5,17 @@ import com.luoye.eventbus.bus.Event;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DefaultSubject<T extends Event> implements Subject<T> {
-    List<Observer<T>> observerList = new LinkedList<>();
+public class DefaultSubject implements Subject {
+    List<Observer> observerList = new LinkedList<>();
 
     private String subjectId;
 
     public void setSubjectId(String subjectId){
         this.subjectId = subjectId;
+    }
+    public DefaultSubject(String subjectId){
+        this.subjectId = subjectId;
+
     }
     @Override
     public String getSubjectId() {
@@ -19,18 +23,18 @@ public class DefaultSubject<T extends Event> implements Subject<T> {
     }
 
     @Override
-    public void add(Observer<T> observer) {
+    public void add(Observer observer) {
         observerList.add(observer);
     }
 
     @Override
-    public void remove(Observer<T> observer) {
+    public void remove(Observer observer) {
         observerList.remove(observer);
     }
 
     @Override
-    public void notifyObserver(T event) {
-        for (Observer<T> observer :
+    public void notifyObserver(Event event) {
+        for (Observer observer :
                 observerList) {
             observer.response(event);
         }
